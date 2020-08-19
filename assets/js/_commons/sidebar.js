@@ -23,7 +23,7 @@ $(function() {
 
         isExpanded = !isExpanded;
       }
-    }
+    };
 
   }());
 

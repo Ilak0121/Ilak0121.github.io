@@ -19,7 +19,7 @@ var getInitStatus = (function () {
       hasInit = true;
     }
     return ret;
-  }
+  };
 }());
 
 
