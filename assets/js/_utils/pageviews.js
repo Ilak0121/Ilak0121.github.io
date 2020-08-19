@@ -176,8 +176,8 @@ function fetchPageviews(fetchOrigin = true, filterOrigin = false) {
   /* pvCacheEnabled › see: /assets/js/_pv-config.js */
   if (pvCacheEnabled && fetchOrigin) {
     fetch("/assets/js/data/pageviews.json")
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (filterOrigin) {
           if (PvCache.newerThan(data)) {
             return;
