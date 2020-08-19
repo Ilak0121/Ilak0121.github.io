@@ -89,7 +89,7 @@ var PvCache = (function () {
     }
   };
 
-})(); /* PvCache */
+}()); /* PvCache */
 
 function countUp(min, max, destId) {
   if (min < max) {

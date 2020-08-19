@@ -37,7 +37,7 @@ $(function() {
         return offset;
       }
     }
-  })();
+  }());
 
   var mobileSearchBar = (function() {
     return {
@@ -56,7 +56,7 @@ $(function() {
         btnSearchTrigger.removeClass("unloaded");
       }
     }
-  })();
+  }());
 
   var resultSwitch = (function() {
     var visable = false;
@@ -91,7 +91,7 @@ $(function() {
         return visable;
       }
     }
-  })();
+  }());
 
 
   function isMobileView() {

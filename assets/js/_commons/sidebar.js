@@ -25,7 +25,7 @@ $(function() {
       }
     }
 
-  })();
+  }());
 
   $("#sidebar-trigger").click(sidebarUtil.toggle);
 
