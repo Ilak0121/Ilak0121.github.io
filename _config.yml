@@ -8,7 +8,7 @@
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 #--------------------------
 
-title: JungBeom Jask Seo                          # the main title
+title: Jake(Ilak)                          # the main title
 
 tagline: M.S interested in security and blockchain.  # it will display as the sub-title
 
@@ -38,8 +38,8 @@ social:
     - https://twitter.com/Ilak0121      # change to your twitter homepage
     - https://github.com/Ilak0121       # change to your github homepage
     # Uncomment below to add more social links
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.facebook.com/Jungbeoms
+    - https://www.linkedin.com/in/ilak
 
 google_site_verification: google_meta_tag_verification # change to your verification string
 
