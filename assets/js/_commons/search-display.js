@@ -27,13 +27,13 @@ $(function() {
   var scrollBlocker = (function() {
     var offset = 0;
     return {
-      block: function() {
+      block() {
         offset = $(window).scrollTop();
       },
-      release: function() {
+      release() {
         $("html,body").scrollTop(offset);
       },
-      getOffset: function() {
+      getOffset() {
         return offset;
       }
     }
@@ -41,14 +41,14 @@ $(function() {
 
   var mobileSearchBar = (function() {
     return {
-      on: function() {
+      on() {
         btnSbTrigger.addClass("unloaded");
         topbarTitle.addClass("unloaded");
         btnSearchTrigger.addClass("unloaded");
         searchWrapper.addClass("d-flex");
         btnCancel.addClass("loaded");
       },
-      off: function() {
+      off() {
         btnCancel.removeClass("loaded");
         searchWrapper.removeClass("d-flex");
         btnSbTrigger.removeClass("unloaded");
@@ -62,7 +62,7 @@ $(function() {
     var visable = false;
 
     return {
-      on: function() {
+      on() {
         if (!visable) {
           resultWrapper.removeClass("unloaded");
           main.addClass("hidden");
@@ -71,7 +71,7 @@ $(function() {
           scrollBlocker.block();
         }
       },
-      off: function() {
+      off() {
         if (visable) {
           results.empty();
           if (hints.hasClass("unloaded")) {
@@ -87,7 +87,7 @@ $(function() {
           scrollBlocker.release();
         }
       },
-      isVisable: function() {
+      isVisable() {
         return visable;
       }
     }

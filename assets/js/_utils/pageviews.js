@@ -13,7 +13,7 @@
 
 var getInitStatus = (function () {
   var hasInit = false;
-  return function () {
+  return () => {
     let ret = hasInit;
     if (!hasInit) {
       hasInit = true;
@@ -42,26 +42,26 @@ var PvCache = (function () {
   }
 
   return {
-    getData: function() {
+    getData() {
       return JSON.parse(localStorage.getItem(KEY_PV) );
     },
-    saveOriginCache: function(pv) {
+    saveOriginCache(pv) {
       set(KEY_PV, pv);
       set(KEY_PV_SRC, Source.ORIGIN );
       set(KEY_CREATION, new Date().toJSON() );
     },
-    saveProxyCache: function(pv) {
+    saveProxyCache(pv) {
       set(KEY_PV, pv);
       set(KEY_PV_SRC, Source.PROXY );
       set(KEY_CREATION, new Date().toJSON() );
     },
-    isFromOrigin: function() {
+    isFromOrigin() {
       return get(KEY_PV_SRC) === Source.ORIGIN;
     },
-    isFromProxy: function() {
+    isFromProxy() {
       return get(KEY_PV_SRC) === Source.PROXY;
     },
-    isExpired: function() {
+    isExpired() {
       if (PvCache.isFromOrigin() ) {
         let date = new Date(get(KEY_CREATION));
         date.setDate(date.getDate() + 1); /* update origin records every day */
@@ -74,13 +74,13 @@ var PvCache = (function () {
       }
       return false;
     },
-    getAllPagevies: function() {
+    getAllPagevies() {
       return PvCache.getData().totalsForAllResults["ga:pageviews"];
     },
-    newerThan: function(pv) {
+    newerThan(pv) {
       return PvCache.getAllPagevies() > pv.totalsForAllResults["ga:pageviews"];
     },
-    inspectKeys: function() {
+    inspectKeys() {
       if (localStorage.getItem(KEY_PV) === null
         || localStorage.getItem(KEY_PV_SRC) === null
         || localStorage.getItem(KEY_CREATION) === null) {
@@ -162,10 +162,10 @@ function fetchProxyPageviews() {
     url: proxyEndpoint, /* see: /assets/js/_pv-config.js */
     dataType: "jsonp",
     jsonpCallback: "displayPageviews",
-    success: function(data, textStatus, jqXHR) {
+    success: (data, textStatus, jqXHR) => {
       PvCache.saveProxyCache(JSON.stringify(data));
     },
-    error: function(jqXHR, textStatus, errorThrown) {
+    error: (jqXHR, textStatus, errorThrown) => {
       console.log("Failed to load pageviews from proxy server: " + errorThrown);
     }
   });

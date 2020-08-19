@@ -14,7 +14,7 @@ $(function() {
     var body = $("body");
 
     return {
-      toggle: function() {
+      toggle() {
         if (isExpanded === false) {
           body.attr(ATTR_DISPLAY, "");
         } else {
