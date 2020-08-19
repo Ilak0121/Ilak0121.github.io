@@ -9,14 +9,8 @@ title: CV
 # MIT License
 ---
 
-# JungBeom Jake Seo
-> Interested in **security** and **blockchain**
-
-## Contacts
-- [Mail](jungbeomseo@postech.ac.kr)
-- [Facebook](https://www.facebook.com/Jungbeoms)
-- [Linkedin](https://www.linkedin.com/in/ilak/)
-- [Github](https://github.com/Ilak0121 )
+# Jungbeom Jake Seo
+> I'm interested in **security** and **blockchain**
 
 ## Education
 - BS at _Electrical and Electronics Engineering_ Ajou University (_Mar 2014_ - _Feb 2020_)
@@ -26,6 +20,8 @@ title: CV
 - X-TAL: School club studying embedded software at Ajou university (_Mar 2014_ - _Feb 2020_)
     - Role: Vice President (_Mar 2018_ - _Jul 2018_), Sys. Admin. (_Feb 2018_ - _Sept 2019_), Executive (_Jul 2017_ - _Feb 2020_)
 - HaMer: School club studying computer security at Ajou university (_Mar 2018_ - _Feb 2020_)
+
+## Publication
 
 ## Awards
 
