@@ -156,6 +156,22 @@ function displayPageviews(data) {
 }
 
 
+function fetchProxyPageviews() {
+  $.ajax({
+    type: "GET",
+    url: proxyEndpoint, /* see: /assets/js/_pv-config.js */
+    dataType: "jsonp",
+    jsonpCallback: "displayPageviews",
+    success: function(data, textStatus, jqXHR) {
+      PvCache.saveProxyCache(JSON.stringify(data));
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log("Failed to load pageviews from proxy server: " + errorThrown);
+    }
+  });
+}
+
+
 function fetchPageviews(fetchOrigin = true, filterOrigin = false) {
   /* pvCacheEnabled › see: /assets/js/_pv-config.js */
   if (pvCacheEnabled && fetchOrigin) {
@@ -176,22 +192,6 @@ function fetchPageviews(fetchOrigin = true, filterOrigin = false) {
     fetchProxyPageviews();
   }
 
-}
-
-
-function fetchProxyPageviews() {
-  $.ajax({
-    type: "GET",
-    url: proxyEndpoint, /* see: /assets/js/_pv-config.js */
-    dataType: "jsonp",
-    jsonpCallback: "displayPageviews",
-    success: function(data, textStatus, jqXHR) {
-      PvCache.saveProxyCache(JSON.stringify(data));
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-      console.log("Failed to load pageviews from proxy server: " + errorThrown);
-    }
-  });
 }
 
 
