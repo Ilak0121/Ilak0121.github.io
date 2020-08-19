@@ -15,17 +15,17 @@ $(function() {
     if (past.getFullYear() !== now.getFullYear()) {
       toRefresh -= 1;
       return past.toLocaleString("en-US", {
-         year: 'numeric',
-         month: 'short',
-         day: 'numeric'
+         year: "numeric",
+         month: "short",
+         day: "numeric"
       });
     }
 
     if (past.getMonth() !== now.getMonth()) {
       toRefresh -= 1;
       return past.toLocaleString("en-US", {
-         month: 'short',
-         day: 'numeric'
+         month: "short",
+         day: "numeric"
       });
     }
 
@@ -55,9 +55,9 @@ $(function() {
     $(".timeago").each(function() {
       if ($(this).children("i").length > 0) {
         var basic = $(this).text();
-        var isLastmod = $(this).hasClass('lastmod');
+        var isLastmod = $(this).hasClass("lastmod");
         var node = $(this).children("i");
-        var date = node.text();   /* ISO Date: 'YYYY-MM-DDTHH:MM:SSZ' */
+        var date = node.text();   /* ISO Date: "YYYY-MM-DDTHH:MM:SSZ" */
         $(this).text(timeago(date, isLastmod));
         $(this).append(node);
       }

@@ -11,84 +11,19 @@
  * MIT License
  */
 
-function countUp(min, max, destId) {
-  if (min < max) {
-    var numAnim = new CountUp(destId, min, max);
-    if (!numAnim.error) {
-      numAnim.start();
-    } else {
-      console.error(numAnim.error);
-    }
-  }
-}
-
-
-function countPV(path, rows) {
-  var count = 0;
-
-  if (rows !== undefined ) {
-    for (var i = 0; i < rows.length; ++i) {
-      var gaPath = rows[i][0];
-      if (gaPath == path) { /* path format see: site.permalink */
-        count += parseInt(rows[i][1]);
-        break;
-      }
-    }
-  }
-
-  return count;
-}
-
-
-function tacklePV(rows, path, elem, hasInit) {
-  var count = countPV(path, rows);
-  count = (count === 0 ? 1 : count);
-
-  if (!hasInit) {
-    elem.text(new Intl.NumberFormat().format(count));
-  } else {
-    var initCount = parseInt(elem.text().replace(/,/g, ''));
-    if (count > initCount) {
-      countUp(initCount, count, elem.attr('id'));
-    }
-  }
-}
-
-
-function displayPageviews(data) {
-  if (data === undefined) {
-    return;
-  }
-
-  var hasInit = getInitStatus();
-  var rows = data.rows; /* could be undefined */
-
-  if ($("#post-list").length > 0) { /* the Home page */
-    $(".post-preview").each(function() {
-      var path = $(this).children("div").children("h1").children("a").attr("href");
-      tacklePV(rows, path, $(this).find('.pageviews'), hasInit);
-    });
-
-  } else if ($(".post").length > 0) { /* the post */
-    var path = window.location.pathname;
-    tacklePV(rows, path, $('#pv'), hasInit);
-  }
-}
-
-
-var getInitStatus = (function() {
+var getInitStatus = (function () {
   var hasInit = false;
-  return function() {
+  return function () {
     let ret = hasInit;
     if (!hasInit) {
       hasInit = true;
     }
     return ret;
   }
-})();
+}());
 
 
-var PvCache = (function() {
+var PvCache = (function () {
   const KEY_PV = "pv";
   const KEY_CREATION = "pv_created_date";
   const KEY_PV_SRC = "pv_source";
@@ -121,10 +56,10 @@ var PvCache = (function() {
       set(KEY_CREATION, new Date().toJSON() );
     },
     isFromOrigin: function() {
-      return get(KEY_PV_SRC) == Source.ORIGIN;
+      return get(KEY_PV_SRC) === Source.ORIGIN;
     },
     isFromProxy: function() {
-      return get(KEY_PV_SRC) == Source.PROXY;
+      return get(KEY_PV_SRC) === Source.PROXY;
     },
     isExpired: function() {
       if (PvCache.isFromOrigin() ) {
@@ -156,11 +91,75 @@ var PvCache = (function() {
 
 })(); /* PvCache */
 
+function countUp(min, max, destId) {
+  if (min < max) {
+    var numAnim = new CountUp(destId, min, max);
+    if (!numAnim.error) {
+      numAnim.start();
+    } else {
+      console.error(numAnim.error);
+    }
+  }
+}
+
+
+function countPV(path, rows) {
+  var count = 0;
+
+  if (rows !== undefined ) {
+    for (var i = 0; i < rows.length; ++i) {
+      var gaPath = rows[i][0];
+      if (gaPath === path) { /* path format see: site.permalink */
+        count += parseInt(rows[i][1], 10);
+        break;
+      }
+    }
+  }
+
+  return count;
+}
+
+
+function tacklePV(rows, path, elem, hasInit) {
+  var count = countPV(path, rows);
+  count = (count === 0 ? 1 : count);
+
+  if (!hasInit) {
+    elem.text(new Intl.NumberFormat().format(count));
+  } else {
+    var initCount = parseInt(elem.text().replace(/,/g, ""), 10);
+    if (count > initCount) {
+      countUp(initCount, count, elem.attr("id"));
+    }
+  }
+}
+
+
+function displayPageviews(data) {
+  if (data === undefined) {
+    return;
+  }
+
+  var hasInit = getInitStatus();
+  var rows = data.rows; /* could be undefined */
+
+  if ($("#post-list").length > 0) { /* the Home page */
+    $(".post-preview").each(function() {
+      var path = $(this).children("div").children("h1").children("a").attr("href");
+      tacklePV(rows, path, $(this).find(".pageviews"), hasInit);
+    });
+
+  } else if ($(".post").length > 0) { /* the post */
+    var path = window.location.pathname;
+    tacklePV(rows, path, $("#pv"), hasInit);
+  }
+}
+
 
 function fetchPageviews(fetchOrigin = true, filterOrigin = false) {
   /* pvCacheEnabled › see: /assets/js/_pv-config.js */
   if (pvCacheEnabled && fetchOrigin) {
-    fetch('/assets/js/data/pageviews.json')
+    fetch("/assets/js/data/pageviews.json")
       .then(response => response.json())
       .then(data => {
         if (filterOrigin) {
@@ -182,9 +181,9 @@ function fetchPageviews(fetchOrigin = true, filterOrigin = false) {
 
 function fetchProxyPageviews() {
   $.ajax({
-    type: 'GET',
+    type: "GET",
     url: proxyEndpoint, /* see: /assets/js/_pv-config.js */
-    dataType: 'jsonp',
+    dataType: "jsonp",
     jsonpCallback: "displayPageviews",
     success: function(data, textStatus, jqXHR) {
       PvCache.saveProxyCache(JSON.stringify(data));
@@ -198,7 +197,7 @@ function fetchProxyPageviews() {
 
 $(function() {
 
-  if ($('.pageviews').length > 0) {
+  if ($(".pageviews").length > 0) {
 
     PvCache.inspectKeys();
     let cache = PvCache.getData();
