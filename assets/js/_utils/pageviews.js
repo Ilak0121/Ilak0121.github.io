@@ -106,7 +106,7 @@ function countUp(min, max, destId) {
 function countPV(path, rows) {
   var count = 0;
 
-  if (rows !== undefined ) {
+  if (typeof rows !== "undefined" ) {
     for (var i = 0; i < rows.length; ++i) {
       var gaPath = rows[i][0];
       if (gaPath === path) { /* path format see: site.permalink */
@@ -136,7 +136,7 @@ function tacklePV(rows, path, elem, hasInit) {
 
 
 function displayPageviews(data) {
-  if (data === undefined) {
+  if (typeof data === "undefined") {
     return;
   }
 

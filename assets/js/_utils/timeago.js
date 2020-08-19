@@ -10,7 +10,7 @@ $(function() {
 
   var toRefresh = $(".timeago").length;
 
-  var intervalId = undefined;
+  var intervalId = void 0;
 
   function timeago(iso, isLastmod) {
     let now = new Date();
@@ -66,7 +66,7 @@ $(function() {
       }
     });
 
-    if (toRefresh === 0 && intervalId !== undefined) {
+    if (toRefresh === 0 && typeof intervalId !== "undefined") {
       clearInterval(intervalId); /* stop interval */
     }
     return toRefresh;
