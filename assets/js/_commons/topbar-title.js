@@ -29,11 +29,11 @@ $(function() {
     }
 
     if ($(this).scrollTop() >= 95) {
-      if ($("#topbar-title").text() != title) {
+      if ($("#topbar-title").text() !== title) {
         $("#topbar-title").text(title);
       }
     } else {
-      if ($("#topbar-title").text() != DEFAULT) {
+      if ($("#topbar-title").text() !== DEFAULT) {
         $("#topbar-title").text(DEFAULT);
       }
     }

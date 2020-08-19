@@ -42,7 +42,7 @@ function countPV(path, rows) {
 
 function tacklePV(rows, path, elem, hasInit) {
   var count = countPV(path, rows);
-  count = (count == 0 ? 1 : count);
+  count = (count === 0 ? 1 : count);
 
   if (!hasInit) {
     elem.text(new Intl.NumberFormat().format(count));
@@ -146,9 +146,9 @@ var PvCache = (function() {
       return PvCache.getAllPagevies() > pv.totalsForAllResults["ga:pageviews"];
     },
     inspectKeys: function() {
-      if (localStorage.getItem(KEY_PV) == null
-        || localStorage.getItem(KEY_PV_SRC) == null
-        || localStorage.getItem(KEY_CREATION) == null) {
+      if (localStorage.getItem(KEY_PV) === null
+        || localStorage.getItem(KEY_PV_SRC) === null
+        || localStorage.getItem(KEY_CREATION) === null) {
         localStorage.clear();
       }
     }

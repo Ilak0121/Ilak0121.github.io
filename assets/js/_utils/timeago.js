@@ -12,7 +12,7 @@ $(function() {
     let now = new Date();
     let past = new Date(iso);
 
-    if (past.getFullYear() != now.getFullYear()) {
+    if (past.getFullYear() !== now.getFullYear()) {
       toRefresh -= 1;
       return past.toLocaleString("en-US", {
          year: 'numeric',
@@ -21,7 +21,7 @@ $(function() {
       });
     }
 
-    if (past.getMonth() != now.getMonth()) {
+    if (past.getMonth() !== now.getMonth()) {
       toRefresh -= 1;
       return past.toLocaleString("en-US", {
          month: 'short',
@@ -63,8 +63,8 @@ $(function() {
       }
     });
 
-    if (toRefresh == 0 && intervalId != undefined) {
-      clearInterval(intervalId);  /* stop interval */
+    if (toRefresh === 0 && intervalId !== undefined) {
+      clearInterval(intervalId); /* stop interval */
     }
     return toRefresh;
   }
@@ -72,7 +72,7 @@ $(function() {
 
   var toRefresh = $(".timeago").length;
 
-  if (toRefresh == 0) {
+  if (toRefresh === 0) {
     return;
   }
 

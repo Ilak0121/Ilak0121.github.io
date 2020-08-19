@@ -118,14 +118,14 @@ $(function() {
   });
 
   input.on('keyup', function(e) {
-    if (e.keyCode == 8 && input.val() == '') {
+    if (e.keyCode === 8 && input.val() === '') {
       if (!isMobileView()) {
         resultSwitch.off();
       } else {
         hints.removeClass('unloaded');
       }
     } else {
-      if (input.val() != '') {
+      if (input.val() !== "") {
         resultSwitch.on();
 
         if (!btnClear.hasClass('visible')) {
